@@ -47,8 +47,8 @@ class DataLabels {
     let lastDrawnIndex =
       typeof w.globals.lastDrawnDataLabelsIndexes[i] !== 'undefined'
         ? w.globals.lastDrawnDataLabelsIndexes[i][
-            w.globals.lastDrawnDataLabelsIndexes[i].length - 1
-          ]
+        w.globals.lastDrawnDataLabelsIndexes[i].length - 1
+        ]
         : 0
 
     if (typeof w.globals.dataLabelsRects[i][len] !== 'undefined') {
@@ -81,7 +81,7 @@ class DataLabels {
     // this method handles line, area, bubble, scatter charts as those charts contains markers/points which have pre-defined x/y positions
     // all other charts like radar / bars / heatmaps will define their own drawDataLabel routine
     let w = this.w
-    
+
     const graphics = new Graphics(this.ctx)
 
     let dataLabelsConfig = w.config.dataLabels
@@ -93,8 +93,8 @@ class DataLabels {
 
     let elDataLabelsWrap = null
 
-    const seriesCollapsed = 
-        w.globals.collapsedSeriesIndices.indexOf(i) !== -1
+    const seriesCollapsed =
+      w.globals.collapsedSeriesIndices.indexOf(i) !== -1
 
     if (seriesCollapsed || !dataLabelsConfig.enabled || !Array.isArray(pos.x)) {
       return elDataLabelsWrap
@@ -221,8 +221,8 @@ class DataLabels {
     if (correctedLabels.textRects) {
       // fixes #2264
       if (
-        x < -20 - correctedLabels.textRects.width ||
-        x > w.globals.gridWidth + correctedLabels.textRects.width + 30
+        x < -20 - correctedLabels.x ||
+        x > w.globals.gridWidth + correctedLabels.x + 30
       ) {
         // datalabels fall outside drawing area, so draw a blank label
         text = ''

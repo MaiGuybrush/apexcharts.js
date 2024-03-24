@@ -390,7 +390,7 @@ export default class BarDataLabels {
     let valIsNegative = this.barCtx.series[i][j] < 0
 
     let newX = x
-    if (this.barCtx.isReversed) {
+    if (this.barCtx.isReversed || this.barCtx.isRangeBar) {
       newX = x + barWidth - (valIsNegative ? barWidth * 2 : 0)
       x = w.globals.gridWidth - barWidth
     }
@@ -464,7 +464,7 @@ export default class BarDataLabels {
       totalDataLabelsY = dataLabelsY + barTotalDataLabelsConfig.offsetY
     }
 
-    if (!w.config.chart.stacked) {
+    if (!w.config.chart.stacked && !this.barCtx.isRangeBar) {
       if (dataLabelsX < 0) {
         dataLabelsX = dataLabelsX + textRects.width + strokeWidth
       } else if (dataLabelsX + textRects.width / 2 > w.globals.gridWidth) {
@@ -596,7 +596,7 @@ export default class BarDataLabels {
         j,
         parent: elDataLabelsWrap,
         dataLabelsConfig: modifiedDataLabelsConfig,
-        alwaysDrawDataLabel: true,
+        alwaysDrawDataLabel: false,
         offsetCorrection: true,
       })
     }
